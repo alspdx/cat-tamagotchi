@@ -60,6 +60,7 @@ gulp.task('build', ['clean'], function() {
   }
   gulp.start('bower');
   gulp.start('htmlBuild');
+  gulp.start('cssBuild');
 });
 
 gulp.task('jshint', function() {
@@ -82,6 +83,13 @@ gulp.task('htmlBuild', function() {
   browserSync.reload();
 });
 
+gulp.task('cssBuild', function(done) {
+  return gulp.src(['src/css/*.css'])
+    .pipe(gulp.dest('./dist/css'));
+  browserSync.reload();
+  done();
+});
+
 gulp.task('serve', function() {
   browserSync.init({
     server: {
@@ -91,6 +99,7 @@ gulp.task('serve', function() {
   });
 
   gulp.watch(['src/*.html'], ['htmlBuild']);
+  gulp.watch(['src/css/*.css'], ['cssBuild']);
   gulp.watch(['src/js/*.js'], ['jsBuild']);
   gulp.watch(['bower.json'], ['bowerBuild']);
 });

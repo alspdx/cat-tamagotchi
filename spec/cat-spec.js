@@ -66,4 +66,9 @@ describe('Cat', function() {
     expect(badCat.hungerLevel).toEqual(2);
     expect(badCat.disobeyLevel).toEqual(3);
   });
+
+  it('should return a random disobey message string', function() {
+    expect(badCat.disobey()).toEqual(jasmine.any(String));
+  });
+
 });

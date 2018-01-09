@@ -1,0 +1,24 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Monofett', cursive;
+  font-size: 10vh;
+}
+
+.forms {
+  font-family: 'VT323', monospace;
+  margin-top: 40vh;
+}

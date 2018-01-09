@@ -15,9 +15,9 @@ export let cat = {
   setDisobey: function() {
     let interval = 10000;
     let disobeyInterval = setInterval(() => {
-      const disobeyChance = this.disobeyLevel * 5;
-      if (Math.ceil(Math.random() * 100) < disobeyChance) {
-        this.catDisobey();
+      const disobeyChance = this.disobeyLevel;
+      if (Math.ceil(Math.random() * 20) < disobeyChance) {
+        this.disobey();
       };
     }, interval);
   },
@@ -54,6 +54,15 @@ export let cat = {
         return `You played ${game} with ${that.name}! Entertainment level goes up ${amount} and ${that.name} purs loudly while rolling around on the floor like a dum-dum.`
       }
     }
+  },
+
+  disobey: function() {
+    const catDisobey = [`${this.name} scratches the sofa!`,
+                        `${this.name} shits on the floor!`,
+                        `${this.name} hisses and swipes!`,
+                        `${this.name} knocks a plant over!`,
+                        `${this.name} pukes on the rug!`];
+    return catDisobey[Math.floor(Math.random() * catDisobey.length)];
   }
 }
 
