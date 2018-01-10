@@ -18,16 +18,16 @@ export let cat = {
       const disobeyChance = this.disobeyLevel;
       if (Math.ceil(Math.random() * 20) < disobeyChance) {
         this.disobey();
-      };
+      }
     }, interval);
   },
 
   feedCat: function(amount) {
     let that = this;
     return function(food) {
-      that.hungerLevel -= amount
-      return `You fed ${that.name} some ${food}! Hunger level goes down ${amount}!`
-    }
+      that.hungerLevel -= amount;
+      return `You fed ${that.name} some ${food}! Hunger level goes down ${amount}!`;
+    };
   },
 
   peopleFood: function(amount) {
@@ -35,8 +35,8 @@ export let cat = {
     return function(food) {
       that.disobeyLevel += 2;
       that.hungerLevel -= amount;
-      return `You fed ${that.name} some ${food}. Hunger level goes down ${amount}, but it isn't normal for cats to eat that! Disobey level increases 2!`
-    }
+      return `You fed ${that.name} some ${food}. Hunger level goes down ${amount}, but it isn't normal for cats to eat that! Disobey level increases 2!`;
+    };
   },
 
   entertainCat: function(amount, gameType) {
@@ -46,14 +46,14 @@ export let cat = {
       if (gameType === "small") {
         that.hungerLevel += 1;
         that.disobeyLevel -= 1;
-        return `You played ${game} with ${that.name}! Entertainment level goes up ${amount} and ${that.name} bats his eyes at you in admiration.`
+        return `You played ${game} with ${that.name}! Entertainment level goes up ${amount} and ${that.name} bats his eyes at you in admiration.`;
       }
       else if (gameType === "big") {
         that.hungerLevel += 2;
         that.disobeyLevel -= 2;
-        return `You played ${game} with ${that.name}! Entertainment level goes up ${amount} and ${that.name} purs loudly while rolling around on the floor like a dum-dum.`
+        return `You played ${game} with ${that.name}! Entertainment level goes up ${amount} and ${that.name} purs loudly while rolling around on the floor like a dum-dum.`;
       }
-    }
+    };
   },
 
   disobey: function() {
@@ -63,8 +63,24 @@ export let cat = {
                         `${this.name} knocks a plant over!`,
                         `${this.name} pukes on the rug!`];
     return catDisobey[Math.floor(Math.random() * catDisobey.length)];
+  },
+
+  gifCall: function(searchFor) {
+    return new Promise(function(resolve, reject) {
+    	const request = new XMLHttpRequest();
+      let url = `https://api.giphy.com/v1/gifs/search?q=${searchFor}&api_key=9mzTITHyMUFLwvNwMeiuRq5l2m0L5YKa`;
+      request.onload = function() {
+      	if(this.status === 200) {
+        	resolve(request.response);
+        } else {
+        	reject(Error(request.statusText));
+        }
+      };
+      request.open("GET", url, true);
+      request.send();
+    });
   }
-}
+};
 
 cat.feedTreat = cat.feedCat(2);
 cat.feedDryFood = cat.feedCat(3);

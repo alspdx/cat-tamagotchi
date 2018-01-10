@@ -22,3 +22,17 @@ h1 {
   font-family: 'VT323', monospace;
   margin-top: 40vh;
 }
+
+.cat-output {
+  height: 300px;
+  width: 400px;
+}
+
+.cat-ouput-inner {
+  height: 100%;
+  width: 100%;
+}
+
+.cat-ouput-inner img {
+  object-fit: cover;
+}
